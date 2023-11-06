@@ -1,0 +1,24 @@
+version: "4.2"
+services:
+  product:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    command: 'php artisan serve --host=0.0.0.0'
+    depends_on:
+      - pan_db
+
+  pan_db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: pan-events
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Adedunsi2022?
+      MYSQL_ROOT_PASSWORD: Adedunsi2022?
+      volumes: mysql
+      ports: 33063:3306
